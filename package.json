@@ -4,9 +4,9 @@
   "description": "Desafio processo seletivo Distance Challenge",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec npm run babel-node -- ./server.js && npm run eslint",
+    "start": "nodemon --exec npm run babel-node -- ./server.js",
     "babel-node": "babel-node --presets=es2015 --ignore='node_modules'",
-    "test": "npm run test",
+    "test": "jasmine-node ./tests/api",
     "eslint": "eslint ."
   },
   "author": "Ayrton Teshima",
@@ -22,6 +22,7 @@
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
     "frisby": "^0.8.5",
+    "jasmine-node": "^1.14.5",
     "nodemon": "^1.11.0"
   }
 }
