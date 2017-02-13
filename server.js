@@ -1,6 +1,6 @@
 import Hapi from 'hapi';
-import searchRoutes from './routes/search';
-import * as connectionConfigs from './configs/connection';
+import searchRoutes from './src/routes/search';
+import * as connectionConfigs from './src/configs/connection';
 
 const server = new Hapi.Server();
 server.connection({ port: connectionConfigs.PORT, host: connectionConfigs.HOST });
