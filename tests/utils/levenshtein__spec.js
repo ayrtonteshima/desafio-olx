@@ -1,4 +1,4 @@
-var levenshtein = require('./../../lib/utils/levenshtein');
+var levenshtein = require('./../../lib/utils/levenshtein').default;
 
 describe("Testa função levenshtein", function() {
   it("Testa inserção", function() {
