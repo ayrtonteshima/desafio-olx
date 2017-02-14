@@ -1,19 +1,33 @@
 import Hapi from 'hapi';
 import Good from 'good';
-import searchRoutes from './routes/search';
+import searchAPIRoutes from './routes/search';
 import * as connectionConfigs from './configs/connection';
 
 const server = new Hapi.Server();
 
-server.connection({
-  port: connectionConfigs.PORT,
-  host: connectionConfigs.HOST
-});
+const setConnectionServer = () => {
+  server.connection({
+    port: connectionConfigs.PORT,
+    host: connectionConfigs.HOST
+  });
+};
 
-server.route(searchRoutes);
+const setRoutes = (routes) => {
+  server.route(routes);
+};
 
-// Registrando log
-server.register({
+const setPluginsHapi = (config) => {
+  server.register(config);
+};
+
+const startServer = () => {
+  server.start((serverErr) => {
+    if (serverErr) throw serverErr;
+    console.log(`Servidor rodando em: ${server.info.uri}`);
+  });
+};
+
+const configPluginLogHapi = {
   register: Good,
   options: {
     reporters: {
@@ -29,14 +43,9 @@ server.register({
       }, 'stdout']
     }
   }
-}, (err) => {
-  if (err) {
-    throw err;
-  }
+};
 
-  server.start((serverErr) => {
-    if (serverErr) throw serverErr;
-
-    console.log(`Servidor rodando em: ${server.info.uri}`);
-  });
-});
+setConnectionServer(connectionConfigs);
+setRoutes(searchAPIRoutes);
+setPluginsHapi(configPluginLogHapi)
+  .then(startServer);
