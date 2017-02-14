@@ -4,9 +4,9 @@
   "description": "Desafio processo seletivo Distance Challenge",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec npm run babel-node -- ./src/server.js",
+    "start": "npm run build && nodemon --exec npm run babel-node -- ./src/server.js",
     "babel-node": "babel-node --presets=es2015 --ignore='node_modules'",
-    "pretest": "babel src --out-dir lib --presets=es2015",
+    "build": "babel src --out-dir lib --presets=es2015",
     "test": "jasmine-node ./tests",
     "eslint": "eslint ."
   },
