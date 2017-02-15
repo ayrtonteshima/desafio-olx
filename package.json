@@ -8,7 +8,7 @@
     "babel-node": "babel-node --presets=es2015 --ignore='node_modules'",
     "build": "babel src --out-dir lib --presets=es2015",
     "test": "jasmine-node ./tests",
-    "eslint": "eslint .",
+    "eslint": "eslint src",
     "migrate": "sequelize db:migrate --config=src/configs/database.json --models-path=src/models"
   },
   "author": "Ayrton Teshima",
