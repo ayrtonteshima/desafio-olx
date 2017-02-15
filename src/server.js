@@ -16,9 +16,7 @@ const setRoutes = (routes) => {
   server.route(routes);
 };
 
-const setPluginsHapi = (config) => {
-  server.register(config);
-};
+const setPluginsHapi = config => server.register(config);
 
 const startServer = () => {
   server.start((serverErr) => {
