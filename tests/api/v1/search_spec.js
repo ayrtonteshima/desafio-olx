@@ -3,7 +3,6 @@ var levenshtein = require('./../../../lib/utils/levenshtein').default;
 var configs = require('./../../../lib/configs/connection');
 
 var URL_BASE = 'http://' + configs.HOST + ':' + configs.PORT;
-
 /****************************************************************/
 /****************************************************************/
 
@@ -51,13 +50,12 @@ frisby.create('Testa se retorno das palavras estão com até 2 modificações do
 /****************************************************************/
 /****************************************************************/
 
-frisby.create('Testa se armazenou a a palavra')
+frisby.create('Testa se armazenou a palavra phone')
   .post(URL_BASE + '/api/v1/words/phone')
   .expectStatus(200)
   .expectJSON({
-    data: function(arr) {
-      var words = arr.filter(word => levenshtein('phone', word) <= 3);
-      expect(arr.length).toEqual(words.length);
+    data: function(word) {
+      expect(word).toEqual('phone');
     }
   })
   .toss();
