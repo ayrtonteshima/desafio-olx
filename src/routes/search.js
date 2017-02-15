@@ -1,4 +1,3 @@
-import Word from './../models/word';
 import * as searchWordsHandler from './../handlers/search';
 
 export default [
