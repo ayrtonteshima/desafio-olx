@@ -1,5 +1,6 @@
 import R from 'ramda';
 import WordModel from './../models/word';
+import levenshtein from './../utils/levenshtein';
 
 export function getAllWords(request, reply) {
   return WordModel.findAll().then((words) => {
@@ -22,9 +23,19 @@ export function storeWord({ params }, reply) {
 }
 
 export function getWordsFiltered({ params }, reply) {
-  reply({
-    statusCode: 200,
-    message: 'Palavras retornadas com sucesso',
-    data: []
+  WordModel.findAll().then((words) => {
+    const threshold = params.threshold || 3;
+
+    const wordsList = R.pluck('name', words);
+
+    const filterWordByDistance = R.compose(R.lte(R.__, threshold), levenshtein(params.word));
+
+    const wordsFiltered = R.filter(filterWordByDistance, wordsList);
+
+    reply({
+      statusCode: 200,
+      message: 'Palavras retornadas com sucesso',
+      data: wordsFiltered
+    });
   });
 }
