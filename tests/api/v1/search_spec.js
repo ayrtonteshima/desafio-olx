@@ -1,6 +1,6 @@
 var frisby = require('frisby');
-var levenshtein = require('./../../../lib/utils/levenshtein').default;
-var configs = require('./../../../lib/configs/connection');
+var levenshtein = require('./../../../build/utils/levenshtein').default;
+var configs = require('./../../../build/configs/connection');
 
 var URL_BASE = 'http://' + configs.HOST + ':' + configs.PORT;
 /****************************************************************/
