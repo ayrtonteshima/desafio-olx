@@ -28,6 +28,8 @@ Utilizei o mysql no projeto pela simplicidade dessa etapa. Gostaria de ter coloc
 Edite esse script antes de rodar o comando 
 *npm run migrate*
 
+Obs: As migrations não criam o banco, crie com o nome que estiver no arquivo de configuração.
+
 ##Rotas
 * GET **/api/v1/words** - Lista todas as palavras salva no banco
 * GET **/api/v1/words/{word}** - Lista palavras parecidas com o palavra buscada (threshold 3 como padrão)
