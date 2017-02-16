@@ -13,7 +13,7 @@ export function getAllWords(request, reply) {
 }
 
 export function storeWord({ params }, reply) {
-  return WordModel.create({ name: params.word }).then(() => {
+  return WordModel.findOrCreate({ where: { name: params.word } }).then(() => {
     reply({
       statusCode: 200,
       message: 'Palavra armazenada com sucesso',
