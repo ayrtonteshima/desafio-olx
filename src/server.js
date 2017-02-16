@@ -3,18 +3,28 @@ import Good from 'good';
 import searchAPIRoutes from './routes/search';
 import * as connectionConfigs from './configs/connection';
 
-const server = new Hapi.Server();
+const server = new Hapi.Server({
+  connections: {
+    router: {
+      stripTrailingSlash: true
+    }
+  }
+});
 
-const setConnectionServer = () => {
-  server.connection({
-    port: connectionConfigs.PORT,
-    host: connectionConfigs.HOST
-  });
-};
+const setConnectionServer = () => (
+  new Promise((resolve) => {
+    resolve(server.connection({
+      port: connectionConfigs.PORT,
+      host: connectionConfigs.HOST
+    }));
+  }
+));
 
-const setRoutes = (routes) => {
-  server.route(routes);
-};
+const setRoutes = routes => (
+  new Promise((resolve) => {
+    resolve(server.route(routes));
+  })
+);
 
 const setPluginsHapi = config => server.register(config);
 
@@ -43,7 +53,8 @@ const configPluginLogHapi = {
   }
 };
 
-setConnectionServer(connectionConfigs);
-setRoutes(searchAPIRoutes);
-setPluginsHapi(configPluginLogHapi)
-  .then(startServer);
+Promise.all([
+  setConnectionServer(connectionConfigs),
+  setRoutes(searchAPIRoutes),
+  setPluginsHapi(configPluginLogHapi)
+]).then(startServer);
