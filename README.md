@@ -1,13 +1,11 @@
-#OLX Distance Challenge
+# OLX Distance Challenge
 
-##Desafio proposto
+## Desafio proposto
 Criar uma API Rest que suporte as operações de salvar, mostrar todas e listar palavras semelhantes (até 3 diferenças com valor customizável) com o termo buscado.
 
-##Rodar projeto
+## Rodar projeto
 
 ```
-#!javascript
-
 npm install
 npm run migrate
 npm start
@@ -22,7 +20,7 @@ Para executar os testes o projeto (npm start) precisa também estar rodando
 
 Se estiver com configurações padrão, ele vai rodar em http://localhost:3000. Ou caso prefira, defina as variáveis de ambiente PORT e HOST para quais desejar.
 
-##Configurando banco
+## Configurando banco
 Utilizei o mysql no projeto pela simplicidade dessa etapa. Gostaria de ter colocado em um ambiente isolado como no Docker mas acabou não dando tempo. O arquivo de configuração fica em: **src/configs/database.json**
 
 Edite esse script antes de rodar o comando 
@@ -30,13 +28,13 @@ Edite esse script antes de rodar o comando
 
 Obs: As migrations não criam o banco, crie com o nome que estiver no arquivo de configuração.
 
-##Rotas
+## Rotas
 * GET **/api/v1/words** - Lista todas as palavras salva no banco
 * GET **/api/v1/words/{word}** - Lista palavras parecidas com o palavra buscada (threshold 3 como padrão)
 * GET **/api/v1/words/{word}/{threshold}** - Lista palavras parecidas com o palavra buscada podendo passar threshold
 * POST **/api/v1/words/{word}** - Salva palavra no banco
 
-##Sobre o desafio
+## Sobre o desafio
 Projeto desenvolvido com muito cuidado e amor em javascript/es6, apesar do pouco tempo e disponibilidade. A proposta inicial era fazer com estilo funcional utilizando Ramda onde cabia. O maior desafio seria transpor o algoritmo de busca para funcional com Ramda utilizando as suas características como pure functions, compositions etc. Consegui deixar com estilo funcional porém ainda não foi todo refatorado para Ramda (será meu desafio pós desafio :))
 
 Utilizei o framework Hapi para desenvolver a API, configurar rotas etc. Jasmine para testes junto com frisby que me ajuda a testar a API.
