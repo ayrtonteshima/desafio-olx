@@ -21,11 +21,9 @@ const getDistanceWords = (matrixBase, a, b, handleOnTrue, handleOnFalse) => {
   let j;
   for (i = 1; i <= b.length; i += 1) {
     for (j = 1; j <= a.length; j += 1) {
-      if (b.charAt(i - 1) === a.charAt(j - 1)) {
-        newMatrix[i][j] = handleOnTrue(newMatrix, i, j);
-      } else {
-        newMatrix[i][j] = handleOnFalse(newMatrix, i, j);
-      }
+      newMatrix[i][j] = (b.charAt(i - 1) === a.charAt(j - 1)) ?
+        handleOnTrue(newMatrix, i, j) :
+        handleOnFalse(newMatrix, i, j);
     }
   }
   return newMatrix[b.length][a.length];
